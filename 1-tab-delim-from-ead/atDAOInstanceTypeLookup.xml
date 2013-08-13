@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<atDAOInstanceTypeLookup>
+    <atDAOInstance type="Audio" mods="sound recording" lang="eng"/>
+    <atDAOInstance type="Books" mods="text" lang="eng"/>
+    <atDAOInstance type="Computer disks / tapes" mods="software, multimedia" lang="zxx"/>
+    <atDAOInstance type="Digital object" mods="software, multimedia" lang="zxx"/>
+    <atDAOInstance type="Graphic materials" mods="still image" lang="zxx"/>
+    <atDAOInstance type="Maps" mods="cartographic" lang="zxx"/>
+    <!--atDAOInstance type="Microform" mods="" lang="zxx"/-->
+    <atDAOInstance type="Mixed materials" mods="mixed material" lang="zxx"/>
+    <atDAOInstance type="Moving images" mods="moving image" lang="zxx"/>
+    <atDAOInstance type="Realia" mods="three dimensional object" lang="zxx"/>
+    <atDAOInstance type="Text" mods="text" lang="eng"/>
+</atDAOInstanceTypeLookup>
