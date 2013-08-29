@@ -7,7 +7,7 @@ All three files are REQUIRED for the transformation:
 
 1) at-dao-tab-delimited-export.xsl  -> XSL stylesheet to process EAD XML to tab delimited import file.
 
-2) atDAOInstanceTypeLookup.xml -> XML document used by at-dao-tab-delimited-export.xsl  to correct map AT Instance Type to mods:typeOfResource.
+2) atDAOInstanceTypeLookup.xml -> XML document used by at-dao-tab-delimited-export.xsl  to map AT Instance Type to mods:typeOfResource.
     Also used to create language code field.
     Any changes to the AT Instance types lookup list will need to be reflected in this document.
     
