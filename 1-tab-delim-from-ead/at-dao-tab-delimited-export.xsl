@@ -34,15 +34,12 @@
                     </xsl:choose>
                 </xsl:for-each>
                 <xsl:value-of select="$varTab"/>
-                <!-- Handle format is based on unitid and c[@id] -->
-                    <!--xsl:value-of select="concat('http://hdl.handle.net/2345.2/',$varResourceID,'_',@id)"/><xsl:value-of select="$varTab"/-->
+                <!-- Handle format is based on item unitid -->
                 <xsl:value-of select="concat('http://hdl.handle.net/2345.2/',ead:did/ead:unitid)"/><xsl:value-of select="$varTab"/>
                 <!-- isComponent -->
                 <xsl:text>FALSE</xsl:text><xsl:value-of select="$varTab"/>
-                <!-- componentID -->
-                <!--xsl:value-of select="concat($varResourceID,'_',@id)"/><xsl:value-of select="$varTab"/-->  
-                <xsl:value-of select="ead:did/ead:unitid"/><xsl:value-of select="$varTab"/> <!-- item level unitid -->  
-                <!--xsl:value-of select="$varResourceID"/><xsl:value-of select="$varTab"/-->                   
+                <!-- componentID -->  
+                <xsl:value-of select="ead:did/ead:unitid"/><xsl:value-of select="$varTab"/> <!-- item level unitid -->                   
                 <!-- dateBegin -->
                 <xsl:value-of select="substring-before(ead:did/ead:unitdate/@normal,'/')"/><xsl:value-of select="$varTab"/>
                 <!-- dateEnd -->
@@ -59,7 +56,9 @@
                 <!-- objectType -->        
                 <xsl:value-of select="$varInstanceLookup/atDAOInstanceTypeLookup/atDAOInstance[@type=$varLabel]/@mods"/><xsl:value-of select="$varTab"/>
                 <!-- skip restrictionsApply, eadDaoActuate, eadDaoShow uri -->
-                <xsl:value-of select="$varTab"/><xsl:value-of select="$varTab"/><xsl:value-of select="$varTab"/><xsl:value-of select="$varTab"/>
+                <xsl:value-of select="$varTab"/><xsl:value-of select="$varTab"/><xsl:value-of select="$varTab"/>
+                <!-- uri baseline for scanners -->
+                <xsl:value-of select="ead:did/ead:unitid"/><xsl:value-of select="$varTab"/>
                 <!-- skip useStatement abstract biographicalHistorical conditionsGoverningAccess -->
                 <xsl:value-of select="$varTab"/><xsl:value-of select="$varTab"/><xsl:value-of select="$varTab"/><xsl:value-of select="$varTab"/>
                 <!-- conditionsGoverningUse -->
