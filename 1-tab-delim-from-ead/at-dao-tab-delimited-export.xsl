@@ -49,7 +49,7 @@
                 <!-- skip label for parent -->
                 <xsl:value-of select="$varTab"/>
                 <!-- languageCode -->
-                <xsl:variable name="varLabel"><xsl:value-of select="ead:did/ead:container/@label"/></xsl:variable>
+                <xsl:variable name="varLabel"><xsl:value-of select="normalize-space(ead:did/ead:container/@label)"/></xsl:variable>
                 <xsl:value-of select="$varInstanceLookup/atDAOInstanceTypeLookup/atDAOInstance[@type=$varLabel]/@lang"/><xsl:value-of select="$varTab"/>
                 <!-- title -->
                 <xsl:value-of select="normalize-space(ead:did/ead:unittitle)"/><xsl:value-of select="$varTab"/>
