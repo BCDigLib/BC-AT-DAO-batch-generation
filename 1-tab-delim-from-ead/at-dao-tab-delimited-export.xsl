@@ -21,7 +21,8 @@
              ead:did/ead:unitid is flag that item has been digitized 
         -->
         <xsl:choose>
-            <xsl:when test="ead:did/ead:unitid">
+            <!-- Process container when unitid is present and dao is NOT (previously ingested item). -->
+            <xsl:when test="ead:did/ead:unitid and not(ead:dao)">
                 <xsl:for-each select="ead:did/ead:container">
                     <xsl:choose>
                         <xsl:when test="position()=1">
@@ -55,14 +56,18 @@
                 <xsl:value-of select="normalize-space(ead:did/ead:unittitle)"/><xsl:value-of select="$varTab"/>
                 <!-- objectType -->        
                 <xsl:value-of select="$varInstanceLookup/atDAOInstanceTypeLookup/atDAOInstance[@type=$varLabel]/@mods"/><xsl:value-of select="$varTab"/>
-                <!-- skip restrictionsApply, eadDaoActuate, eadDaoShow uri -->
+                <!-- skip restrictionsApply, eadDaoActuate, eadDaoShow -->
                 <xsl:value-of select="$varTab"/><xsl:value-of select="$varTab"/><xsl:value-of select="$varTab"/>
                 <!-- uri baseline for scanners -->
                 <xsl:value-of select="ead:did/ead:unitid"/><xsl:value-of select="$varTab"/>
                 <!-- skip useStatement abstract biographicalHistorical conditionsGoverningAccess -->
                 <xsl:value-of select="$varTab"/><xsl:value-of select="$varTab"/><xsl:value-of select="$varTab"/><xsl:value-of select="$varTab"/>
                 <!-- conditionsGoverningUse -->
-                <xsl:value-of select="normalize-space(//ead:ead/ead:archdesc[@level='collection']/ead:userestrict/ead:p)"/><xsl:value-of select="$varTab"/>        
+                <xsl:value-of select="normalize-space(//ead:ead/ead:archdesc[@level='collection']/ead:userestrict/ead:p)"/><xsl:value-of select="$varTab"/>
+                <!-- skip custodialHistory -->
+                <xsl:value-of select="$varTab"/>
+                <!-- dimensions -->
+                <xsl:value-of select="concat(ead:did/ead:container[last()=position()], ' ', ead:did/ead:container[last()=position()]/@type)"/>
             <xsl:text>
 </xsl:text>
             </xsl:when>
