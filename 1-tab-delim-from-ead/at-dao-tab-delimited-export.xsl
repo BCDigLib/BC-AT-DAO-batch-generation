@@ -67,7 +67,7 @@
                 <!-- skip custodialHistory -->
                 <xsl:value-of select="$varTab"/>
                 <!-- dimensions -->
-                <xsl:value-of select="concat(ead:did/ead:container[last()=position()], ' ', ead:did/ead:container[last()=position()]/@type)"/>
+                <xsl:value-of select="concat(ead:did/ead:container[last()=position()], ' ', ead:did/ead:container[last()=position()]/@type)"/><xsl:value-of select="$varTab"/>
             <xsl:text>
 </xsl:text>
             </xsl:when>
