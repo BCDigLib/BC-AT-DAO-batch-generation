@@ -115,26 +115,29 @@
             <mods:languageTerm type="code" authority="iso639-2b">eng</mods:languageTerm>
             <mods:languageTerm type="text">English</mods:languageTerm>
         </mods:language>
-        <!--Upgrade physical description later.  This is all constant data now and the extent only applies to single letters.-->
-        <mods:physicalDescription>
-            <mods:form authority="marcform">electronic</mods:form>
-            <!-- Map internetMediaType for each distinct fileGrp -->
-            <xsl:for-each select="/mets:mets/mets:fileSec/mets:fileGrp">
-                    <mods:internetMediaType>
-                        <xsl:variable name="varFileExt">
-                            <xsl:value-of select="substring-after(mets:file[1]/mets:FLocat/@xlink:href,'.')"/>
-                        </xsl:variable>
-                        <xsl:choose>
-                            <xsl:when test="$varFileExt = 'jpg'">image/jpeg</xsl:when>
-                            <xsl:when test="$varFileExt = 'jpeg'">image/jpeg</xsl:when>
-                            <xsl:when test="$varFileExt = 'tif'">image/tiff</xsl:when>
-                            <xsl:when test="$varFileExt = 'tiff'">image/tiff</xsl:when>
-                        </xsl:choose>
-                    </mods:internetMediaType>    
-            </xsl:for-each>        
-            <mods:extent>1 scrapbook</mods:extent>
-            <mods:digitalOrigin>reformatted digital</mods:digitalOrigin>
-        </mods:physicalDescription>
+    </xsl:template>
+    
+    <!-- physicalDescription contains both constant and added data -->
+    <xsl:template match="mods:physicalDescription">
+    <mods:physicalDescription>
+        <mods:form authority="marcform">electronic</mods:form>
+        <!-- Map internetMediaType for each distinct fileGrp -->
+        <xsl:for-each select="/mets:mets/mets:fileSec/mets:fileGrp">
+            <mods:internetMediaType>
+                <xsl:variable name="varFileExt">
+                    <xsl:value-of select="substring-after(mets:file[1]/mets:FLocat/@xlink:href,'.')"/>
+                </xsl:variable>
+                <xsl:choose>
+                    <xsl:when test="$varFileExt = 'jpg'">image/jpeg</xsl:when>
+                    <xsl:when test="$varFileExt = 'jpeg'">image/jpeg</xsl:when>
+                    <xsl:when test="$varFileExt = 'tif'">image/tiff</xsl:when>
+                    <xsl:when test="$varFileExt = 'tiff'">image/tiff</xsl:when>
+                </xsl:choose>
+            </mods:internetMediaType>    
+        </xsl:for-each>   
+        <!-- Grab existing mods:extent and mods:digitalOrigin -->
+        <xsl:apply-templates select="@*|node()"/>
+    </mods:physicalDescription>
     </xsl:template>
     
     <!--(6)mods:language.  This just needed to be moved down.  The output is happening in the mods:origin template now 
