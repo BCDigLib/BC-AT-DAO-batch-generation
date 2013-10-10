@@ -17,6 +17,7 @@
     </xsl:template>
     <xsl:template match="ead:c[@level='file'] | ead:c[@level='item']">
         <xsl:variable name="varTab"><xsl:text>&#x9;</xsl:text></xsl:variable>
+        <xsl:variable name="varQuote">"</xsl:variable>
         <!-- First Two Container Levels  
              ead:did/ead:unitid is flag that item has been digitized 
         -->
@@ -67,7 +68,15 @@
                 <!-- skip custodialHistory -->
                 <xsl:value-of select="$varTab"/>
                 <!-- dimensions -->
-                <xsl:value-of select="concat(ead:did/ead:container[last()=position()], ' ', translate(ead:did/ead:container[last()=position()]/@type,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'))"/><xsl:value-of select="$varTab"/>
+                <xsl:choose>
+                    <xsl:when test="count(ead:did/ead:container) >1">
+                        <xsl:value-of select="concat(ead:did/ead:container[last()=position()], ' ', translate(ead:did/ead:container[last()=position()]/@type,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'))"/><xsl:value-of select="$varTab"/>
+                    </xsl:when>
+                    <!-- Default -->
+                    <xsl:otherwise>
+                        <xsl:text>1 folder</xsl:text>
+                    </xsl:otherwise>
+                </xsl:choose>
             <xsl:text>
 </xsl:text>
             </xsl:when>
