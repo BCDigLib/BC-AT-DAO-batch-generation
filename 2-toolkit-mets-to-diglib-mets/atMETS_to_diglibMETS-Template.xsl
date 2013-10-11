@@ -202,12 +202,11 @@
     <!--Omit mods:relatedItem[@type='original']-->
     <xsl:template match="mods:relatedItem[@type='original']"/>
     
-    <!--Omit toolkit note.  (16) Add mods:accessCondition; (18) mods:extentsion; (19) mods:recordInfo-->
+    <!--Omit toolkit note.  (18) mods:extentsion; (19) mods:recordInfo-->
     <xsl:template match="mods:note[@displayLabel='Digital object made available by ']">
-        <mods:accessCondition type="useAndReproduction">These materials are made available for use in research, teaching and private study, pursuant to U.S. Copyright Law. The user must assume full responsibility for any use of the materials, including but not limited to, infringement of copyright and publication rights of reproduced materials. Any materials used for academic research or otherwise should be fully credited with the source. The original authors may retain copyright to the materials.</mods:accessCondition>
-        	<mods:extension>		 
+        <mods:extension>		 
 			 <mods:localCollectionName><xsl:value-of select="translate(preceding-sibling::mods:relatedItem[@type='host']/mods:identifier,'.','')"></xsl:value-of></mods:localCollectionName>
-        	</mods:extension>	
+        </mods:extension>	
         <mods:recordInfo>
             <mods:languageOfCataloging>
 			     <mods:languageTerm type="text">English</mods:languageTerm>
