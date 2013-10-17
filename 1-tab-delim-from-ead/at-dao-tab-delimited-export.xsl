@@ -74,7 +74,7 @@
                     </xsl:when>
                     <!-- Default -->
                     <xsl:otherwise>
-                        <xsl:text>1 folder</xsl:text>
+                        <xsl:value-of select="concat('1 ', translate(@level,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'))"/>
                     </xsl:otherwise>
                 </xsl:choose>
             <xsl:text>
