@@ -297,7 +297,13 @@
             </xsl:choose>
         </xsl:element>        
     </xsl:template>
-
+    <xsl:template match="mets:FLocat">
+        <xsl:element name="{'mets:'}{local-name()}">
+            <xsl:attribute name="LOCTYPE">URL</xsl:attribute>
+            <xsl:attribute name="xlink:type">simple</xsl:attribute>
+            <xsl:attribute name="xlink:href"><xsl:value-of select="concat('file://streams/', @xlink:href)"></xsl:value-of></xsl:attribute>
+        </xsl:element>
+    </xsl:template>
     <!--Omit logical structMap-->
     <xsl:template match="mets:structMap[@TYPE='logical']"/>
     <xsl:template match="mets:structMap[@TYPE='physical']">
