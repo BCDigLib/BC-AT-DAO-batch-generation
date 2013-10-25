@@ -288,25 +288,20 @@
             <xsl:choose>
                 <xsl:when test="@USE='archive image'">
                   <xsl:attribute name="MIMETYPE">image/tiff</xsl:attribute>                   
-                    <xsl:apply-templates select="@*|node()">
-                        <xsl:with-param name="paraEXT">tif</xsl:with-param>
-                    </xsl:apply-templates>
+                    <xsl:apply-templates select="@*|node()"/>
                 </xsl:when>
                 <xsl:otherwise>
                     <xsl:attribute name="MIMETYPE">image/jpeg</xsl:attribute>  
-                    <xsl:apply-templates select="@*|node()">
-                        <xsl:with-param name="paraEXT">jpg</xsl:with-param>
-                    </xsl:apply-templates>
+                    <xsl:apply-templates select="@*|node()"/>
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:element>        
     </xsl:template>
     <xsl:template match="mets:FLocat">
-        <xsl:param name="paraEXT"/>
         <xsl:element name="{'mets:'}{local-name()}">
             <xsl:attribute name="LOCTYPE">URL</xsl:attribute>
             <xsl:attribute name="xlink:type">simple</xsl:attribute>
-            <xsl:attribute name="xlink:href"><xsl:value-of select="concat('file://streams/', @xlink:href, '.', $paraEXT)"></xsl:value-of></xsl:attribute>
+            <xsl:attribute name="xlink:href"><xsl:value-of select="concat('file://streams/', @xlink:href)"></xsl:value-of></xsl:attribute>
         </xsl:element>
     </xsl:template>
     <!--Omit logical structMap-->
