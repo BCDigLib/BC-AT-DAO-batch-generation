@@ -235,7 +235,7 @@
     <!--Change note in mets:hdr-->
     <xsl:template match="mets:note[1]">
         <xsl:element name="{'mets:'}{local-name()}">
-            <xsl:text>Produced by Archivists' Toolkit &amp;#153; and modified using a local xslt</xsl:text>
+            <xsl:text>Produced by Archivists' Toolkit &#153; and modified using a local xslt</xsl:text>
         </xsl:element>
     </xsl:template>
     
