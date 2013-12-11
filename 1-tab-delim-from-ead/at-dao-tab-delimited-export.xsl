@@ -57,10 +57,8 @@
                 <xsl:value-of select="normalize-space(ead:did/ead:unittitle)"/><xsl:value-of select="$varTab"/>
                 <!-- objectType -->        
                 <xsl:value-of select="$varInstanceLookup/atDAOInstanceTypeLookup/atDAOInstance[@type=$varLabel]/@mods"/><xsl:value-of select="$varTab"/>
-                <!-- skip restrictionsApply, eadDaoActuate, eadDaoShow -->
-                <xsl:value-of select="$varTab"/><xsl:value-of select="$varTab"/><xsl:value-of select="$varTab"/>
-                <!-- uri baseline for scanners -->
-                <xsl:value-of select="ead:did/ead:unitid"/><xsl:value-of select="$varTab"/>
+                <!-- skip restrictionsApply, eadDaoActuate, eadDaoShow uri -->
+                <xsl:value-of select="$varTab"/><xsl:value-of select="$varTab"/><xsl:value-of select="$varTab"/><xsl:value-of select="$varTab"/>
                 <!-- skip useStatement abstract biographicalHistorical conditionsGoverningAccess -->
                 <xsl:value-of select="$varTab"/><xsl:value-of select="$varTab"/><xsl:value-of select="$varTab"/><xsl:value-of select="$varTab"/>
                 <!-- conditionsGoverningUse -->
