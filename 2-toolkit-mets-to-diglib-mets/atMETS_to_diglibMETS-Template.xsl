@@ -224,7 +224,9 @@
             <xsl:attribute name="LABEL">
                 <xsl:value-of select="@LABEL"/>
             </xsl:attribute>
-            <xsl:attribute name="TYPE">text-monograph-whole</xsl:attribute>
+            <xsl:attribute name="TYPE">
+                <xsl:value-of select="@TYPE"/>
+            </xsl:attribute>
             <xsl:attribute name="PROFILE">
                 <xsl:value-of select="@PROFILE"/>
             </xsl:attribute>
