@@ -30,7 +30,15 @@
                             <xsl:value-of select="concat(@type, ' ', format-number(.,'000'))"/>                            
                         </xsl:when>
                         <xsl:when test="position()=2">
-                            <xsl:value-of select="concat('; ',@type, ' ', format-number(.,'000'))"/>                           
+                            <xsl:choose>
+                                <xsl:when test="contains(.,'-')">
+                                    <xsl:value-of select="concat('; ',@type, ' ', format-number(substring-before(.,'-'),'000'))"/>   
+                                    <xsl:value-of select="concat('-', format-number(substring-after(.,'-'),'000'))"/>
+                                </xsl:when>
+                                <xsl:otherwise>
+                                    <xsl:value-of select="concat(@type, ' ', format-number(.,'000'))"/>                                  
+                                </xsl:otherwise>
+                            </xsl:choose>                          
                         </xsl:when>
                         <xsl:otherwise/>
                     </xsl:choose>
