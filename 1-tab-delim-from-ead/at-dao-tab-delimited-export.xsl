@@ -36,7 +36,7 @@
                                     <xsl:value-of select="concat('-', format-number(substring-after(.,'-'),'000'))"/>
                                 </xsl:when>
                                 <xsl:otherwise>
-                                    <xsl:value-of select="concat(@type, ' ', format-number(.,'000'))"/>                                  
+                                    <xsl:value-of select="concat('; ', @type, ' ', format-number(.,'000'))"/>                                  
                                 </xsl:otherwise>
                             </xsl:choose>                          
                         </xsl:when>
