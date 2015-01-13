@@ -49,13 +49,32 @@
                 <!-- isComponent -->
                 <xsl:text>FALSE</xsl:text><xsl:value-of select="$varTab"/>
                 <!-- componentID -->  
-                <xsl:value-of select="ead:did/ead:unitid"/><xsl:value-of select="$varTab"/> <!-- item level unitid -->                   
-                <!-- dateBegin -->
-                <xsl:value-of select="substring-before(ead:did/ead:unitdate/@normal,'/')"/><xsl:value-of select="$varTab"/>
-                <!-- dateEnd -->
-                <xsl:value-of select="substring-after(ead:did/ead:unitdate/@normal,'/')"/><xsl:value-of select="$varTab"/>	
-                <!-- dateExpression -->
-                <xsl:value-of select="normalize-space(ead:did/ead:unitdate)"/><xsl:value-of select="$varTab"/>	
+                <xsl:value-of select="ead:did/ead:unitid"/><xsl:value-of select="$varTab"/> <!-- item level unitid -->   
+                <!-- dates-->
+                <!-- when the date expression is undated, use the dates of the parent c-level for begin and end dates.  If the parent
+                    c-level does not have a unit date then take the begin and end dates from the archdesc inclusive unit-date-->
+                <xsl:choose>
+                    <xsl:when test="contains(translate(ead:did/ead:unitdate,'UNDATED','undated'),'undated')">
+                        <xsl:choose>
+                            <xsl:when test="(parent::ead:c/ead:did/ead:unitdate) and (parent::ead:c/ead:did/ead:unitdate !='undated')">
+                                <xsl:value-of select="substring-before(parent::ead:c/ead:did/ead:unitdate/@normal,'/')"/><xsl:value-of select="$varTab"/>
+                                <xsl:value-of select="substring-after(parent::ead:c/ead:did/ead:unitdate/@normal,'/')"/><xsl:value-of select="$varTab"/>
+                                <xsl:value-of select="translate(normalize-space(ead:did/ead:unitdate),'UNDATED','undated')"/><xsl:value-of select="$varTab"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:value-of select="substring-before(//ead:ead/ead:archdesc/ead:did/ead:unitdate[@type='inclusive']/@normal,'/')"/><xsl:value-of select="$varTab"/>
+                                <xsl:value-of select="substring-after(//ead:ead/ead:archdesc/ead:did/ead:unitdate[@type='inclusive']/@normal,'/')"/><xsl:value-of select="$varTab"/>
+                                <xsl:value-of select="translate(normalize-space(ead:did/ead:unitdate),'UNDATED','undated')"/><xsl:value-of select="$varTab"/>
+                            </xsl:otherwise>
+                        </xsl:choose>                      
+                    </xsl:when>
+                    <!-- when the date expression is other than undated-->
+                    <xsl:otherwise>
+                        <xsl:value-of select="substring-before(ead:did/ead:unitdate/@normal,'/')"/><xsl:value-of select="$varTab"/>
+                        <xsl:value-of select="substring-after(ead:did/ead:unitdate/@normal,'/')"/><xsl:value-of select="$varTab"/>	
+                        <xsl:value-of select="normalize-space(ead:did/ead:unitdate)"/><xsl:value-of select="$varTab"/> 
+                    </xsl:otherwise>
+                </xsl:choose>
                 <!-- skip label for parent -->
                 <xsl:value-of select="$varTab"/>
                 <!-- languageCode -->
@@ -73,21 +92,14 @@
                 <xsl:value-of select="normalize-space(//ead:ead/ead:archdesc[@level='collection']/ead:userestrict/ead:p)"/><xsl:value-of select="$varTab"/>
                 <!-- skip custodialHistory -->
                 <xsl:value-of select="$varTab"/>
-                <!-- dimensions -->
-                <xsl:choose>
-                    <xsl:when test="count(ead:did/ead:container) >1">
-                        <xsl:value-of select="concat(ead:did/ead:container[last()=position()], ' ', translate(ead:did/ead:container[last()=position()]/@type,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'))"/><xsl:value-of select="$varTab"/>
-                    </xsl:when>
-                    <!-- Default -->
-                    <xsl:otherwise>
-                        <xsl:value-of select="concat('1 ', translate(@level,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'))"/>
-                    </xsl:otherwise>
-                </xsl:choose>
+                <!-- skip dimensions -->
+                <xsl:value-of select="$varTab"/>
             <xsl:text>
 </xsl:text>
             </xsl:when>
         </xsl:choose>
         <xsl:apply-templates/>
     </xsl:template>
+  
     <xsl:template match="text()"/>
 </xsl:stylesheet>
