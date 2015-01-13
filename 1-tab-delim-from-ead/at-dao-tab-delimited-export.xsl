@@ -92,7 +92,7 @@
                 <xsl:value-of select="normalize-space(//ead:ead/ead:archdesc[@level='collection']/ead:userestrict/ead:p)"/><xsl:value-of select="$varTab"/>
                 <!-- skip custodialHistory -->
                 <xsl:value-of select="$varTab"/>
-                <!-- skip dimensions -->
+                <!-- dimensions -->
                 <xsl:text>1 </xsl:text><xsl:value-of select="@level"/><xsl:value-of select="$varTab"/>
             <xsl:text>
 </xsl:text>
