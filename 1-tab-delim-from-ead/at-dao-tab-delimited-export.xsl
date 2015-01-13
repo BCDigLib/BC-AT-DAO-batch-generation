@@ -93,7 +93,7 @@
                 <!-- skip custodialHistory -->
                 <xsl:value-of select="$varTab"/>
                 <!-- skip dimensions -->
-                <xsl:value-of select="$varTab"/>
+                <xsl:text>1 </xsl:text><xsl:value-of select="@level"/><xsl:value-of select="$varTab"/>
             <xsl:text>
 </xsl:text>
             </xsl:when>
