@@ -21,6 +21,14 @@ All three files are REQUIRED for the transformation:
 All three files need to be located in the same local directory.
 
 
+ADD COMPONENT ROWS TO TAB DELIMITED FILE
+-------------------------------------------------------------
+Component rows must be added to each parent record.  
+
+1.) addComponents.pl -> Input files are tab (1) import file and (2) a text file containing the file names for each component.
+	directory structure is omitted from text file containing file names
+
+Usage: addComponents.pl tabimportfile componentsfile
 
 STRIP EXTRA QUOTES FROM TAB FILE
 -------------------------------------------------------------
