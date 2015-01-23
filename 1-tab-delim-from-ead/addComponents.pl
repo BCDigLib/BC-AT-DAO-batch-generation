@@ -38,7 +38,7 @@ sub main {
 		else 	#enhance and print parent row
 		{	
 			@parentRow = split('\t', $lineIn);			
-			$parentRow[22] = 'reformatted digital';  #assumes digitized originals
+			$parentRow[29] = 'reformatted digital';  #assumes digitized originals
 			$parentRow[30] = 'image/jpeg'; 	#assumes only one mime type for project
 									#if there are multiple mime types, they  															#should be delimited by semicolons	
 			$lineIn = join("\t", @parentRow);
