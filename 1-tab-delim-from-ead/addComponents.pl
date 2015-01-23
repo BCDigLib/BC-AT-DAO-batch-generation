@@ -40,7 +40,7 @@ sub main {
 			@parentRow = split('\t', $lineIn);			
 			$parentRow[22] = 'reformatted digital';  #assumes digitized originals
 			$parentRow[30] = 'image/jpeg'; 	#assumes only one mime type for project
-									#if there are multiple mime types, they should 									#be delimited by semicolons	
+									#if there are multiple mime types, they  															#should be delimited by semicolons	
 			$lineIn = join("\t", @parentRow);
 			print $newFH $lineIn;
 			
@@ -64,8 +64,6 @@ sub main {
 						my $label = $_;
 						$label =~ s/\..*$//;
 						$componentRow[7] = $label;
-						$componentRow[12] = "onRequest";
-						$componentRow[13] = "new";
 						$componentRow[14] = $_;
 						$componentRow[15] = "reference image";  #assumption
 						
