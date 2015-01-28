@@ -151,6 +151,16 @@
                 <xsl:text>1 </xsl:text>
                 <xsl:value-of select="@level"/>
                 <xsl:value-of select="$varTab"/>
+                <xsl:value-of select="$varTab"/>
+                <xsl:value-of select="$varTab"/>
+                <xsl:value-of select="$varTab"/>
+                <xsl:value-of select="$varTab"/>
+                <xsl:value-of select="$varTab"/>
+                <xsl:value-of select="$varTab"/>
+                <xsl:value-of select="$varTab"/>
+                <xsl:value-of select="$varTab"/>
+                <xsl:value-of select="$varTab"/>
+                <xsl:value-of select="$varTab"/>
                 <xsl:text>
 </xsl:text>
             </xsl:when>
