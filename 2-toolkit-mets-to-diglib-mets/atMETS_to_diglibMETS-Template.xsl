@@ -123,7 +123,7 @@
                 <xsl:value-of
                     select="preceding-sibling::mods:language/mods:languageTerm[@type='code']"/>
             </mods:languageTerm>
-            <mods:languageTerm type="text">
+            <mods:languageTerm type="text" authority="iso639-2b">
                 <xsl:value-of
                     select="preceding-sibling::mods:language/mods:languageTerm[@type='text']"/>
             </mods:languageTerm>
