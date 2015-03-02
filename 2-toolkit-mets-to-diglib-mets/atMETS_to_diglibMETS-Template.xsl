@@ -174,7 +174,7 @@
         <mods:originInfo>
             <xsl:choose>
                 <!-- handle case when host only has begin and end dates-->
-                <xsl:when test="count(mods:dateCreated=2)">
+                <xsl:when test="count(mods:dateCreated)=2">
                     <xsl:choose>
                         <xsl:when test="mods:dateCreated[1]=mods:dateCreated[2]">
                             <mods:dateCreated>
