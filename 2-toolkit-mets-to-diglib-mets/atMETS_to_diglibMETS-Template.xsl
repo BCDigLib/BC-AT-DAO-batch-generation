@@ -228,11 +228,11 @@
     <!--(11) Omit toolkit note.  (19) mods:extentsion; (20) mods:recordInfo-->
     <xsl:template match="mods:note[@displayLabel='Digital object made available by ']">
         <mods:extension>
-            <mods:localCollectionName>
+            <localCollectionName>
                 <xsl:value-of
                     select="translate(preceding-sibling::mods:relatedItem[@type='host']/mods:identifier,'.','')"
                 />
-            </mods:localCollectionName>
+            </localCollectionName>
         </mods:extension>
         <mods:recordInfo>
             <mods:recordContentSource>Boston College</mods:recordContentSource>
