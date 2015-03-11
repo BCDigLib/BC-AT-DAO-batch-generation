@@ -69,12 +69,20 @@ sub main {
 						
 						print $newFH join("\t", @componentRow)."\n";
 
+
 				}
+
+
 			}
+						if ($count == 0) {print "ERROR: $parentRow[3] has no images\n"}
+
 		}
 
+
 	} 	
+
 }
+
 
 =pod
 Usage: addComponents.pl tabimportfile componentsfile
