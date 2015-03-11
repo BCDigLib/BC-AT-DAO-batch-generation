@@ -87,7 +87,7 @@
             <xsl:apply-templates select="@*|node()"/>
         </xsl:element>
         <!--project dependent-->
-        <mods:genre authority="gmgpc" displayLabel="general">photographs</mods:genre>
+        <mods:genre authority="gmgpc" displayLabel="general">Photographs</mods:genre>
     </xsl:template>
 
     <!--(5)mods:originInfo; (6) mods:language -->
