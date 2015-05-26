@@ -125,7 +125,14 @@
                     select="$varInstanceLookup/atDAOInstanceTypeLookup/atDAOInstance[@type=$varLabel]/@lang"/>
                 <xsl:value-of select="$varTab"/>
                 <!-- title -->
-                <xsl:value-of select="normalize-space(ead:did/ead:unittitle)"/>
+                <xsl:choose>
+                    <xsl:when test="ead:did/ead:unittitle">
+                        <xsl:value-of select="normalize-space(ead:did/ead:unittitle)"/>                        
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:value-of select="normalize-space(ead:did/ead:unitdate)"/>
+                    </xsl:otherwise>
+                </xsl:choose>
                 <xsl:value-of select="$varTab"/>
                 <!-- objectType -->
                 <xsl:value-of
