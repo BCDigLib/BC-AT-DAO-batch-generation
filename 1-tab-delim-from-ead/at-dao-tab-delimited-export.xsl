@@ -126,7 +126,7 @@
                 <xsl:value-of select="$varTab"/>
                 <!-- title -->
                 <xsl:choose>
-                    <xsl:when test="ead:did/ead:unittitle">
+                    <xsl:when test="ead:did/ead:unittitle/text()">
                         <xsl:value-of select="normalize-space(ead:did/ead:unittitle)"/>                        
                     </xsl:when>
                     <xsl:otherwise>
