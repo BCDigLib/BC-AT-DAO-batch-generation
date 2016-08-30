@@ -14,7 +14,7 @@
         *                  suitable for use in the Boston College         *
         *                  Digital Library. Oct 30, 2011                  *
         *                                                                 *
-        * UPDATED:         Jan. 27, 2015                                  *
+        * UPDATED:         Aug 30, 2016                                  *
         *                                                                 *
         * USE:             Convert Archivists Toolkit MODS/METS to conform*
         *                  with Boston College and Digital Commonwealth   *
@@ -279,8 +279,8 @@
                 <mets:mdWrap MDTYPE="OTHER" OTHERMDTYPE="preservation_md">
                     <mets:xmlData>
                         <premis xmlns="info:lc/xmlns/premis-v2"
-                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.0"
-                            xsi:schemaLocation="info:lc/xmlns/premis-v2 http://www.loc.gov/standards/premis/premis.xsd">
+                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.1"
+                            xsi:schemaLocation="info:lc/xmlns/premis-v2 http://www.loc.gov/standards/premis/v2/premis-v2-1.xsd">
                             <!-- premis file object -->
                             <object xsi:type="file">
                                 <objectIdentifier>
