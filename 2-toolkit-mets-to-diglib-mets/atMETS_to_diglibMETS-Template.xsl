@@ -47,7 +47,7 @@
     </xsl:template>
     <xsl:template match="@*|text()|comment()|processing-instruction()">
         <xsl:copy>
-            <xsl:apply-templates select="@*|node()"/>
+            <xsl:apply-templates select="@*"/>
         </xsl:copy>
     </xsl:template>
     <!--End of Identity Template-->
@@ -60,7 +60,7 @@
         </mods:mods>
     </xsl:template>
 
-    <!--(1)mods:titldInfo; Digital Commonwealth requires usage-->
+    <!--(1)mods:titleInfo; Digital Commonwealth requires usage-->
     <!-- Not handling nonSort; does DACS allow nonSort?-->
 
     <xsl:template match="mods:titleInfo">
@@ -72,7 +72,21 @@
     <!--(2)mods:name and (3)mods:typeOfResource-->
     <!--(4) genre (one genre with a broad value displayLabel from Digital Commonwealth list required -->
 
+    <xsl:template match="mods:name"/>
+    
     <xsl:template match="mods:typeOfResource">
+        <xsl:for-each select="following-sibling::mods:name[@type='personal']">
+            <mods:name authority="naf" type="personal">
+                <mods:namePart type='family'><xsl:value-of select="mods:namePart[@type='family']"/></mods:namePart>
+                <mods:namePart type='given'><xsl:value-of select="mods:namePart[@type='given']"/></mods:namePart>
+                <mods:namePart type='date'><xsl:value-of select="mods:namePart[@type='date']"/></mods:namePart>
+                <mods:displayForm><xsl:value-of select="mods:displayForm"/></mods:displayForm>
+                <mods:role>
+                    <mods:roleTerm type='text' authority="marcrelator"><xsl:value-of select="upper-case(substring(mods:role/mods:roleTerm[@type='text'],1,1))"/><xsl:value-of select="substring(mods:role/mods:roleTerm[@type='text'],2,7)"/></mods:roleTerm>
+                    <mods:roleTerm type='code' authority="marcrelator"><xsl:value-of select="mods:role/mods:roleTerm[@type='code']"/></mods:roleTerm>
+                </mods:role>
+            </mods:name>
+        </xsl:for-each>
         <mods:name authority="naf" type="corporate">
             <mods:namePart>Boston College</mods:namePart>
             <mods:namePart>John J. Burns Library</mods:namePart>
@@ -83,11 +97,10 @@
             </mods:role>
         </mods:name>
         <xsl:element name="{'mods:'}{local-name()}">
-            <xsl:attribute name="manuscript">yes</xsl:attribute>
             <xsl:apply-templates select="@*|node()"/>
         </xsl:element>
         <!--project dependent-->
-        <mods:genre authority="gmgpc" displayLabel="general">Photographs</mods:genre>
+        <mods:genre authority="gmgpc" displayLabel="general">Prints</mods:genre>
     </xsl:template>
 
     <!--(5)mods:originInfo; (6) mods:language -->
@@ -115,7 +128,7 @@
             <mods:issuance>monographic</mods:issuance>
         </mods:originInfo>
 
-        <!--(6)mods:language.  The mods:language element is the second one output in toolkit EAD.  
+        <!--(6)mods:language.  The mods:language element term is the second one output in toolkit EAD.  
         To re-arrange the elements, this template is here and the output is happening in the mods:origin template now -->
 
         <mods:language>
@@ -165,6 +178,7 @@
             <mods:digitalOrigin>
                 <xsl:value-of select="mods:note[@displayLabel='Material Specific Details note']"/>
             </mods:digitalOrigin>
+            <mods:note type="physical details">Dimensions of Original: <xsl:value-of select="mods:note[@displayLabel='General Physical Description note']"/></mods:note>
         </mods:physicalDescription>
     </xsl:template>
 
@@ -199,6 +213,21 @@
                         </xsl:otherwise>
                     </xsl:choose>
                 </xsl:when>
+                <xsl:otherwise>
+                    <xsl:if test="count(mods:dateCreated)=3">
+                        <mods:dateCreated>
+                            <xsl:value-of select="mods:dateCreated[2]"/>
+                            <xsl:text>-</xsl:text>
+                            <xsl:value-of select="mods:dateCreated[3]"/>
+                        </mods:dateCreated>
+                        <mods:dateCreated encoding="w3cdtf" point="start" keyDate="yes">
+                            <xsl:value-of select="mods:dateCreated[2]"/>
+                        </mods:dateCreated>
+                        <mods:dateCreated encoding="w3cdtf" point="end">
+                            <xsl:value-of select="mods:dateCreated[3]"/>
+                        </mods:dateCreated>
+                    </xsl:if>
+                </xsl:otherwise>
             </xsl:choose>
         </mods:originInfo>
     </xsl:template>
@@ -279,8 +308,8 @@
                 <mets:mdWrap MDTYPE="OTHER" OTHERMDTYPE="preservation_md">
                     <mets:xmlData>
                         <premis xmlns="info:lc/xmlns/premis-v2"
-                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.0"
-                            xsi:schemaLocation="info:lc/xmlns/premis-v2 http://www.loc.gov/standards/premis/premis.xsd">
+                            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.1"
+                            xsi:schemaLocation="info:lc/xmlns/premis-v2 http://www.loc.gov/standards/premis/v2/premis-v2-1.xsd">
                             <!-- premis file object -->
                             <object xsi:type="file">
                                 <objectIdentifier>
