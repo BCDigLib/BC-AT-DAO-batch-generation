@@ -14,7 +14,7 @@
         *                  suitable for use in the Boston College         *
         *                  Digital Library. Oct 30, 2011                  *
         *                                                                 *
-        * UPDATED:         Jan. 27, 2015                                  *
+        * UPDATED:         Aug 30, 2016                                  *
         *                                                                 *
         * USE:             Convert Archivists Toolkit MODS/METS to conform*
         *                  with Boston College and Digital Commonwealth   *
